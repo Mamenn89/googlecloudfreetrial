@@ -20,9 +20,11 @@ export const PaypalCheckout = ({ amount, currency, onSuccess, onError }: PaypalC
   return (
     <PayPalScriptProvider
       options={{
-        clientId: "AfdAu9IQF4LP5bLlCF4e8ABMRr0l23q0s6jU-M39VuhDrffk9DDUOTXJEHtYg69PRC8cWvhIBtZrC-jh",
+        clientId: "AetzPGCgCVt4xKubMCORk0mhJY2OM2PWgs0hHTCwcw-IeLQ_vLbOZ-k2SFFaTVFHSN_18ZWKfIV-I8V8",
         currency: currency,
         intent: "capture",
+        "enable-funding": "card",
+        "disable-funding": "credit,paylater",
       }}
     >
       {isPending && <div className="text-center py-4">Loading PayPal...</div>}
