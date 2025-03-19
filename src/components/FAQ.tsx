@@ -44,10 +44,10 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="py-16 bg-cloud-lightGray">
+    <section id="faq" className="py-16 bg-gradient-to-br from-white/5 to-cloud-blue/5 backdrop-blur-md">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-cloud-darkBlue">Frequently Asked Questions</h2>
           <p className="text-cloud-gray text-lg max-w-2xl mx-auto">
             Find answers to the most common questions about our Google Cloud trial accounts.
           </p>
@@ -56,9 +56,13 @@ const FAQ = () => {
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg overflow-hidden bg-white shadow-sm">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-cloud-lightBlue transition-colors">
-                  <span className="text-left font-medium">{faq.question}</span>
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`} 
+                className="border border-white/20 rounded-lg overflow-hidden bg-white/10 backdrop-blur-lg shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]"
+              >
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-white/10 transition-colors">
+                  <span className="text-left font-medium text-cloud-darkBlue">{faq.question}</span>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 py-4">
                   <p className="text-cloud-gray">{faq.answer}</p>
@@ -72,7 +76,10 @@ const FAQ = () => {
           <p className="text-cloud-gray mb-4">
             Don't see your question here?
           </p>
-          <Button variant="outline" className="border-cloud-blue text-cloud-blue hover:bg-cloud-lightBlue">
+          <Button 
+            variant="outline" 
+            className="border border-white/20 bg-white/10 backdrop-blur-sm text-cloud-blue hover:bg-white/20 transition-all"
+          >
             Contact Support
           </Button>
         </div>
