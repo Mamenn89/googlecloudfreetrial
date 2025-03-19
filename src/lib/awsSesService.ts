@@ -9,8 +9,8 @@ interface OrderDetails {
   date: string;
 }
 
-// Update this with your actual API Gateway endpoint or Lambda function URL
-const API_ENDPOINT = 'https://87zif0n0f3.execute-api.ap-southeast-2.amazonaws.com/prod/send-email';
+// Update this with your API Gateway endpoint through environment variables
+const API_ENDPOINT = process.env.NEXT_PUBLIC_AWS_SES_API_ENDPOINT;
 
 /**
  * Sends both admin notification and customer receipt emails through AWS SES
@@ -28,7 +28,7 @@ export const sendOrderNotifications = async (
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        adminEmail: 'andhika@batamwebhosting.com', // Replace with your email
+        adminEmail: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
         orderDetails
       }),
     });

@@ -14,7 +14,7 @@ export const PaypalCheckout = ({ amount, currency, onSuccess, onError }: PaypalC
   return (
     <PayPalScriptProvider
       options={{
-        clientId: "AetzPGCgCVt4xKubMCORk0mhJY2OM2PWgs0hHTCwcw-IeLQ_vLbOZ-k2SFFaTVFHSN_18ZWKfIV-I8V8",
+        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
         currency: currency,
         intent: "capture",
       }}

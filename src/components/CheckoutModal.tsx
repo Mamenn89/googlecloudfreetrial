@@ -17,7 +17,7 @@ interface CheckoutModalProps {
 }
 
 // Flag to use mock service for testing - set to false when your AWS Lambda function is deployed
-const USE_MOCK_SERVICE = false;
+const USE_MOCK_SERVICE = process.env.NEXT_PUBLIC_USE_MOCK_SERVICE === 'true';
 
 // Helper function to generate a proper order ID
 const generateOrderId = (): string => {
