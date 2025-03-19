@@ -1,4 +1,3 @@
-
 import { Cloud, Mail, MessageCircle } from "lucide-react";
 
 const Footer = () => {
@@ -33,8 +32,6 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Single Accounts</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Bulk Orders</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Corporate Packages</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Educational Discounts</a></li>
             </ul>
           </div>
 
@@ -63,26 +60,14 @@ const Footer = () => {
             <div className="mt-6">
               <h4 className="font-semibold mb-2">Payment Options</h4>
               <div className="flex space-x-3">
-                <div className="bg-white p-1 rounded">
-                  <svg className="h-6 w-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="5" width="20" height="14" rx="2" fill="#1434CB" />
-                    <path d="M10 9.5C10 8.672 10.672 8 11.5 8C12.328 8 13 8.672 13 9.5C13 10.328 12.328 11 11.5 11C10.672 11 10 10.328 10 9.5Z" fill="#FFFFFF" />
-                  </svg>
-                </div>
-                <div className="bg-white p-1 rounded">
-                  <svg className="h-6 w-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 7.44444C2 5.54211 3.54211 4 5.44444 4H18.5556C20.4579 4 22 5.54211 22 7.44444V16.5556C22 18.4579 20.4579 20 18.5556 20H5.44444C3.54211 20 2 18.4579 2 16.5556V7.44444Z" fill="#FF5F00" />
-                  </svg>
-                </div>
-                <div className="bg-white p-1 rounded">
-                  <svg className="h-6 w-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.2954 12.0023C19.3178 13.9538 17.9841 15.0992 16.2172 15.0992H14.3968V8.90625H16.2172C17.9841 8.90625 19.2954 10.0499 19.2954 12.0023Z" fill="#0079BE" />
-                  </svg>
-                </div>
-                <div className="bg-white p-1 rounded">
-                  <svg className="h-6 w-auto" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.976 9.15H10.024C9.5476 9.15 9.16 9.5376 9.16 10.014V11.018C9.16 11.4944 9.5476 11.882 10.024 11.882H13.976C14.4524 11.882 14.84 11.4944 14.84 11.018V10.014C14.84 9.5376 14.4524 9.15 13.976 9.15Z" fill="#888" />
-                  </svg>
+                <div className="bg-white p-2 rounded flex items-center justify-center">
+                  <img 
+                    src="/paypal.png" 
+                    alt="PayPal" 
+                    width="80" 
+                    height="26" 
+                    className="object-contain"
+                  />
                 </div>
               </div>
             </div>

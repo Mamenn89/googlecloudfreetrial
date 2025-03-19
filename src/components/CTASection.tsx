@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -23,7 +22,7 @@ const CTASection = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Button className="bg-white/20 backdrop-blur-md border border-white/40 text-white hover:bg-white/30 px-8 py-6 text-lg font-medium transition-all hover:shadow-lg">
-              View Pricing Options
+              View Pricing
             </Button>
             <Button variant="outline" className="border-white/40 bg-transparent backdrop-blur-md text-white hover:bg-white/10 px-8 py-6 text-lg font-medium transition-all hover:shadow-lg">
               Learn More

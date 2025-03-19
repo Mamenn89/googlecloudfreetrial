@@ -1,10 +1,39 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Cloud, Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    // Add smooth scrolling to all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (!targetElement) return;
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 80, // Offset for the fixed navbar
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        setMobileMenuOpen(false);
+      });
+    });
+    
+    // Clean up event listeners
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', function () {});
+      });
+    };
+  }, []);
 
   return (
     <nav className="bg-white py-4 px-6 shadow-sm sticky top-0 z-50">
@@ -43,21 +72,18 @@ const Navbar = () => {
             <a 
               href="#features" 
               className="text-cloud-gray hover:text-cloud-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Features
             </a>
             <a 
               href="#pricing" 
               className="text-cloud-gray hover:text-cloud-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Pricing
             </a>
             <a 
               href="#faq" 
               className="text-cloud-gray hover:text-cloud-blue transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
             >
               FAQ
             </a>

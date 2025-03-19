@@ -1,4 +1,3 @@
-
 import {
   Accordion,
   AccordionContent,
@@ -6,6 +5,68 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Cloud, Database, Lock, Zap } from "lucide-react";
+
+const CloudFeatures = () => {
+  const features = [
+    {
+      icon: <Cloud className="h-8 w-8 text-white" />,
+      title: "Flexible Infrastructure",
+      description: "Deploy and scale your applications instantly with our managed cloud infrastructure."
+    },
+    {
+      icon: <Database className="h-8 w-8 text-white" />,
+      title: "Powerful Data Storage",
+      description: "Store and retrieve your data securely with high-performance cloud storage solutions."
+    },
+    {
+      icon: <Zap className="h-8 w-8 text-white" />,
+      title: "AI & Machine Learning",
+      description: "Leverage Google's advanced AI capabilities to build smart applications and services."
+    },
+    {
+      icon: <Lock className="h-8 w-8 text-white" />,
+      title: "Enterprise Security",
+      description: "Protect your applications and data with Google's enterprise-grade security features."
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-b from-[#4285f4] via-[#34A853] to-[#0f9d58] overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 max-w-[1200px]">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Cloud computing, ready for business</h2>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto mt-10">
+            Leverage the power of Google Cloud to build, deploy, and scale your applications with confidence.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
+            <div 
+              key={index} 
+              className="bg-white/10 backdrop-blur-md rounded-xl p-6 hover:shadow-xl hover:transform hover:translate-y-[-8px] transition-all duration-300 cursor-pointer"
+            >
+              <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+              <p className="text-white/80">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="text-center mt-16">
+          <Button 
+            className="bg-white text-[#4285f4] hover:bg-white/90 px-8 py-6 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transition-all"
+          >
+            Talk to us
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const FAQ = () => {
   const faqs = [
@@ -27,7 +88,7 @@ const FAQ = () => {
     },
     {
       question: "How quickly will I receive my account?",
-      answer: "Standard and Premium packages come with instant delivery. For Basic packages, delivery typically happens within 24 hours. We strive to process all orders as quickly as possible."
+      answer: "Delivery typically happens within 24 hours. We strive to process all orders as quickly as possible."
     },
     {
       question: "What happens when the credits run out?",
@@ -97,4 +158,5 @@ const FAQ = () => {
   );
 };
 
+export { CloudFeatures };
 export default FAQ;

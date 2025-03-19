@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cloud, Server, Shield } from "lucide-react";
+
 const Hero = () => {
   return <div className="bg-gradient-to-r from-cloud-lightBlue to-white py-16 md:py-24">
       <div className="container mx-auto px-6">
@@ -13,13 +14,17 @@ const Hero = () => {
               Get instant access to Google Cloud Platform with our pre-configured trial accounts. Start building without the wait.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button className="bg-cloud-blue hover:bg-cloud-darkBlue text-white px-8 py-6 text-lg">
-                View Pricing
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button variant="outline" className="border-cloud-blue text-cloud-blue hover:bg-cloud-lightBlue px-8 py-6 text-lg">
-                Learn More
-              </Button>
+              <a href="#pricing">
+                <Button className="bg-cloud-blue hover:bg-cloud-darkBlue text-white px-8 py-6 text-lg">
+                  View Pricing
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+              <a href="#faq">
+                <Button variant="outline" className="border-cloud-blue text-cloud-blue hover:bg-cloud-lightBlue px-8 py-6 text-lg">
+                  Learn More
+                </Button>
+              </a>
             </div>
             
             <div className="flex items-center mt-8 space-x-8">
@@ -86,9 +91,11 @@ const Hero = () => {
                 </div>
               </div>
               
-              <Button className="w-full bg-cloud-blue hover:bg-cloud-darkBlue text-white py-6">
-                Get Your Account Now
-              </Button>
+              <a href="#pricing">
+                <Button className="w-full bg-cloud-blue hover:bg-cloud-darkBlue text-white py-6">
+                  Get Your Account Now
+                </Button>
+              </a>
             </div>
             
             <div className="absolute -top-6 -right-6 bg-cloud-yellow text-white text-sm font-bold px-4 py-1 rounded-full transform rotate-12">
@@ -99,4 +106,5 @@ const Hero = () => {
       </div>
     </div>;
 };
+
 export default Hero;

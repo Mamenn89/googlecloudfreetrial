@@ -1,11 +1,10 @@
-
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Pricing from "@/components/Pricing";
-import FAQ from "@/components/FAQ";
-import CTASection from "@/components/CTASection";
+import FAQ, { CloudFeatures } from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const Index = () => {
   return (
@@ -16,7 +15,8 @@ const Index = () => {
         <Features />
         <Pricing />
         <FAQ />
-        <CTASection />
+        <CloudFeatures />
+        <WhatsAppWidget />
       </main>
       <Footer />
     </div>

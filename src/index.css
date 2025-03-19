@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -97,5 +101,22 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Modal and PayPal integration styles */
+.paypal-buttons-context-iframe {
+  min-width: unset !important;
+  width: 100% !important;
+}
+
+/* Fix for PayPal display issues on mobile */
+@media (max-width: 480px) {
+  [data-state="open"] > .fixed {
+    padding: 1rem;
+  }
+  
+  .sm\:max-w-md {
+    max-width: calc(100vw - 2rem) !important;
   }
 }
