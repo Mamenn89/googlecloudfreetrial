@@ -9,7 +9,7 @@ interface OrderDetails {
   date: string;
 }
 
-// Update this with your API Gateway endpoint through environment variables
+// Use environment variable for API endpoint
 const API_ENDPOINT = process.env.NEXT_PUBLIC_AWS_SES_API_ENDPOINT;
 
 /**

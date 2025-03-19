@@ -19,11 +19,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    rollupOptions: {
-      external: [
-        "@vercel/analytics/react" // Explicitly mark as external to avoid build errors
-      ]
-    }
-  }
 }));
