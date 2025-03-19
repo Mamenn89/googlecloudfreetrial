@@ -17,7 +17,7 @@ interface CheckoutModalProps {
 }
 
 // Flag to use mock service for testing - set to false when your AWS Lambda function is deployed
-const USE_MOCK_SERVICE = process.env.NEXT_PUBLIC_USE_MOCK_SERVICE === 'true';
+const USE_MOCK_SERVICE = false; // Use real email service for production
 
 // Helper function to generate a proper order ID
 const generateOrderId = (): string => {
@@ -46,9 +46,11 @@ const CheckoutModal = ({ isOpen, onClose, productName, amount, currency }: Check
       });
       setOrderId(newOrderId);
     }
-  }, [isOpen, orderId, addOrder, productName, amount, currency]);
+    console.log("Current payment status:", paymentStatus, "isOpen:", isOpen, "orderId:", orderId);
+  }, [isOpen, orderId, addOrder, productName, amount, currency, paymentStatus]);
 
   const handleCustomerInfoSubmit = (info: CustomerInfo) => {
+    console.log("Customer info submitted:", info);
     setCustomerInfo(info);
     setPaymentStatus('initial');
   };
@@ -70,27 +72,16 @@ const CheckoutModal = ({ isOpen, onClose, productName, amount, currency }: Check
       setNotificationStatus('sending');
       
       try {
-        const { adminEmailSent, customerEmailSent } = USE_MOCK_SERVICE 
-          ? await mockSendOrderNotifications({
-              orderId: generatedOrderId,
-              productName,
-              amount,
-              currency,
-              customerEmail: customerInfo.email,
-              customerName: customerInfo.name,
-              paymentId: details.id || `PP-${Date.now()}`,
-              date: new Date().toISOString(),
-            })
-          : await sendOrderNotifications({
-              orderId: generatedOrderId,
-              productName,
-              amount,
-              currency,
-              customerEmail: customerInfo.email,
-              customerName: customerInfo.name,
-              paymentId: details.id || `PP-${Date.now()}`,
-              date: new Date().toISOString(),
-            });
+        const { adminEmailSent, customerEmailSent } = await sendOrderNotifications({
+          orderId: generatedOrderId,
+          productName,
+          amount,
+          currency,
+          customerEmail: customerInfo.email,
+          customerName: customerInfo.name,
+          paymentId: details.id || `PP-${Date.now()}`,
+          date: new Date().toISOString(),
+        });
         
         setNotificationStatus('success');
         

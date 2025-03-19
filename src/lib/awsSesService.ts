@@ -9,8 +9,11 @@ interface OrderDetails {
   date: string;
 }
 
-// Use environment variable for API endpoint
-const API_ENDPOINT = process.env.NEXT_PUBLIC_AWS_SES_API_ENDPOINT;
+// Hardcoded API endpoint for production
+const API_ENDPOINT = 'https://87zif0n0f3.execute-api.ap-southeast-2.amazonaws.com/prod/send-email';
+
+// Hardcoded admin email
+const ADMIN_EMAIL = 'andhika@batamwebhosting.com';
 
 /**
  * Sends both admin notification and customer receipt emails through AWS SES
@@ -21,21 +24,32 @@ export const sendOrderNotifications = async (
 ): Promise<{adminEmailSent: boolean; customerEmailSent: boolean}> => {
   try {
     console.log('Sending email notifications with details:', orderDetails);
+    console.log('Using API endpoint:', API_ENDPOINT);
+    
+    if (!orderDetails.customerEmail) {
+      console.error('Customer email is missing from order details');
+      return { adminEmailSent: false, customerEmailSent: false };
+    }
     
     const response = await fetch(API_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Origin': window.location.origin,
+        'Accept': 'application/json'
       },
       body: JSON.stringify({
-        adminEmail: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
+        adminEmail: ADMIN_EMAIL,
         orderDetails
       }),
+      mode: 'cors'
     });
     
     if (!response.ok) {
       const errorText = await response.text();
       console.error('API error response:', errorText);
+      console.error('API Status:', response.status);
+      console.error('API Status Text:', response.statusText);
       throw new Error(`API responded with status: ${response.status} - ${errorText}`);
     }
     
@@ -48,6 +62,10 @@ export const sendOrderNotifications = async (
     };
   } catch (error) {
     console.error('Failed to send SES notifications:', error);
+    if (error instanceof Error) {
+      console.error('Error details:', error.message);
+      if (error.stack) console.error('Stack trace:', error.stack);
+    }
     return { adminEmailSent: false, customerEmailSent: false };
   }
 };
@@ -59,11 +77,13 @@ export const sendOrderNotifications = async (
 export const mockSendOrderNotifications = async (
   orderDetails: OrderDetails
 ): Promise<{adminEmailSent: boolean; customerEmailSent: boolean}> => {
-  console.log('Mock sending notification for order:', orderDetails);
+  console.log('🎉 MOCK EMAIL SERVICE: Successfully simulated sending notification for order:', orderDetails);
+  console.log('📧 Would have sent email to customer:', orderDetails.customerEmail);
+  console.log('📧 Would have sent email to admin:', ADMIN_EMAIL);
   
   // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 1500));
+  await new Promise(resolve => setTimeout(resolve, 1000));
   
-  // Return success for testing UI
+  // Always return success for testing UI
   return { adminEmailSent: true, customerEmailSent: true };
 }; 

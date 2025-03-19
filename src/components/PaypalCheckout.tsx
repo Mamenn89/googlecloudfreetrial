@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 interface PaypalCheckoutProps {
@@ -10,11 +10,17 @@ interface PaypalCheckoutProps {
 
 export const PaypalCheckout = ({ amount, currency, onSuccess, onError }: PaypalCheckoutProps) => {
   const [isPending, setIsPending] = useState(false);
+  
+  useEffect(() => {
+    console.log("PayPal clientId:", import.meta.env.VITE_NEXT_PUBLIC_PAYPAL_CLIENT_ID);
+    console.log("PayPal amount:", amount);
+    console.log("PayPal currency:", currency);
+  }, [amount, currency]);
 
   return (
     <PayPalScriptProvider
       options={{
-        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+        clientId: "AfdAu9IQF4LP5bLlCF4e8ABMRr0l23q0s6jU-M39VuhDrffk9DDUOTXJEHtYg69PRC8cWvhIBtZrC-jh",
         currency: currency,
         intent: "capture",
       }}
@@ -31,6 +37,7 @@ export const PaypalCheckout = ({ amount, currency, onSuccess, onError }: PaypalC
             layout: "vertical"
           }}
           createOrder={(data, actions) => {
+            console.log("Creating PayPal order");
             return actions.order.create({
               intent: "CAPTURE",
               purchase_units: [
@@ -45,21 +52,26 @@ export const PaypalCheckout = ({ amount, currency, onSuccess, onError }: PaypalC
           }}
           onApprove={async (data, actions) => {
             try {
+              console.log("Order approved", data);
               if (actions.order) {
                 const details = await actions.order.capture();
                 onSuccess(details);
               }
             } catch (error) {
+              console.error("Capture error", error);
               onError(error);
             }
           }}
           onError={(err) => {
+            console.error("PayPal error", err);
             onError(err);
           }}
           onInit={() => {
+            console.log("PayPal initialized");
             setIsPending(false);
           }}
           onCancel={() => {
+            console.log("Payment cancelled");
             // Handle cancellation if needed
           }}
         />
