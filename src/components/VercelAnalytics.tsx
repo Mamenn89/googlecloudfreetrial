@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // Create a placeholder component that will load Vercel Analytics only in production
+// This approach uses dynamic imports to prevent build failures
 export default function VercelAnalytics() {
   const [Analytics, setAnalytics] = useState<React.ComponentType | null>(null);
 
