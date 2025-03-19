@@ -18,14 +18,14 @@ const CTASection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Start Building on Google Cloud Today
           </h2>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10">
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 font-light">
             Get instant access to $300 in Google Cloud credits without the hassle of verification or adding payment methods.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Button className="bg-white/20 backdrop-blur-md border border-white/40 text-white hover:bg-white/30 px-8 py-6 text-lg font-semibold transition-all hover:shadow-lg">
+            <Button className="bg-white/20 backdrop-blur-md border border-white/40 text-white hover:bg-white/30 px-8 py-6 text-lg font-medium transition-all hover:shadow-lg">
               View Pricing Options
             </Button>
-            <Button variant="outline" className="border-white/40 bg-transparent backdrop-blur-md text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold transition-all hover:shadow-lg">
+            <Button variant="outline" className="border-white/40 bg-transparent backdrop-blur-md text-white hover:bg-white/10 px-8 py-6 text-lg font-medium transition-all hover:shadow-lg">
               Learn More
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -34,15 +34,15 @@ const CTASection = () => {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 max-w-3xl mx-auto gap-6">
             <div className="bg-white/15 backdrop-blur-xl border border-white/30 rounded-lg p-6 shadow-[0_8px_32px_rgba(31,38,135,0.1)] transition-all hover:transform hover:translate-y-[-5px] hover:bg-white/20">
               <div className="text-3xl font-bold mb-2 text-white">$300</div>
-              <p className="text-white/90">Free credits per account</p>
+              <p className="text-white/90 font-light">Free credits per account</p>
             </div>
             <div className="bg-white/15 backdrop-blur-xl border border-white/30 rounded-lg p-6 shadow-[0_8px_32px_rgba(31,38,135,0.1)] transition-all hover:transform hover:translate-y-[-5px] hover:bg-white/20">
               <div className="text-3xl font-bold mb-2 text-white">90 Days</div>
-              <p className="text-white/90">Credit validity period</p>
+              <p className="text-white/90 font-light">Credit validity period</p>
             </div>
             <div className="bg-white/15 backdrop-blur-xl border border-white/30 rounded-lg p-6 shadow-[0_8px_32px_rgba(31,38,135,0.1)] transition-all hover:transform hover:translate-y-[-5px] hover:bg-white/20">
               <div className="text-3xl font-bold mb-2 text-white">Instant</div>
-              <p className="text-white/90">Account delivery</p>
+              <p className="text-white/90 font-light">Account delivery</p>
             </div>
           </div>
         </div>
