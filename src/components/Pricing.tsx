@@ -95,9 +95,17 @@ const Pricing = () => {
           <p className="text-cloud-gray mb-6">
             We offer custom packages for businesses and educational institutions requiring larger quantities of Google Cloud trial accounts.
           </p>
-          <Button variant="outline" className="border-cloud-blue text-cloud-blue hover:bg-cloud-lightBlue/30 px-8 py-4 rounded-xl shadow-sm">
-            Contact for Bulk Pricing
-          </Button>
+          <a 
+            href="mailto:andhika@batamwebhosting.com?subject=Bulk%20Pricing%20Inquiry"
+            className="inline-block"
+          >
+            <Button 
+              variant="outline" 
+              className="border-cloud-blue text-cloud-blue hover:bg-cloud-lightBlue/30 px-8 py-4 rounded-xl shadow-sm"
+            >
+              Contact for Bulk Pricing
+            </Button>
+          </a>
         </div>
       </div>
 

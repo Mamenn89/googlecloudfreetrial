@@ -145,12 +145,17 @@ const FAQ = () => {
             <p className="text-cloud-gray mb-4">
               Don't see your question here?
             </p>
-            <Button 
-              variant="outline" 
-              className="border border-white/30 bg-white/20 backdrop-blur-xl text-cloud-blue hover:bg-white/30 transition-all shadow-[0_8px_32px_rgba(31,38,135,0.07)]"
+            <a 
+              href="mailto:andhika@batamwebhosting.com"
+              className="inline-block"
             >
-              Contact Support
-            </Button>
+              <Button 
+                variant="outline" 
+                className="border border-white/30 bg-white/20 backdrop-blur-xl text-cloud-blue hover:bg-white/30 transition-all shadow-[0_8px_32px_rgba(31,38,135,0.07)]"
+              >
+                Contact Support
+              </Button>
+            </a>
           </div>
         </div>
       </div>
