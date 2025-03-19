@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Debug from "./pages/Debug";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/debug" element={<Debug />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
