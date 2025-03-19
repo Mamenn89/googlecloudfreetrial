@@ -1,14 +1,11 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cloud, Server, Shield } from "lucide-react";
-
 const Hero = () => {
-  return (
-    <div className="bg-gradient-to-r from-cloud-lightBlue to-white py-16 md:py-24">
+  return <div className="bg-gradient-to-r from-cloud-lightBlue to-white py-16 md:py-24">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-10 md:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4 mx-0 my-0 px-0 md:text-4xl text-left py-0">
               Google Cloud Credits
               <span className="text-cloud-blue"> At Your Fingertips</span>
             </h1>
@@ -100,8 +97,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Hero;
