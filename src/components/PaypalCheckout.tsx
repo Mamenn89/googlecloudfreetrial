@@ -20,7 +20,7 @@ export const PaypalCheckout = ({ amount, currency, onSuccess, onError }: PaypalC
   return (
     <PayPalScriptProvider
       options={{
-        clientId: "AetzPGCgCVt4xKubMCORk0mhJY2OM2PWgs0hHTCwcw-IeLQ_vLbOZ-k2SFFaTVFHSN_18ZWKfIV-I8V8",
+        clientId: "ARCI0GA6biTzUL39IQb2b9vZBZlfWGWNQIIekEQgu_yK68E6PEDfJpsU0WpqD19N-hanvmHCgCOP2Wpa",
         currency: currency,
         intent: "capture",
         "enable-funding": "card",
