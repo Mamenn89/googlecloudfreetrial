@@ -1,11 +1,11 @@
 # Facebook Ads Guide with Meta Pixel for Google Cloud Free Trial Website
 
-This detailed guide will walk you through setting up, optimizing, and maintaining Facebook/Meta ads for your Google Cloud Free Trial website. It includes practical advice on leveraging the Meta Pixel you've just implemented for best results.
+This detailed guide will walk you through setting up, optimizing, and maintaining Facebook/Meta ads for your Google Cloud Free Trial website. It includes practical advice on leveraging Meta's tracking capabilities for best results.
 
 ## Table of Contents
 
-1. [Setting Up Your Meta Pixel](#1-setting-up-your-meta-pixel)
-2. [Connecting Pixel to Your Facebook Ads Account](#2-connecting-pixel-to-your-facebook-ads-account)
+1. [Setting Up Your Meta Dataset](#1-setting-up-your-meta-dataset)
+2. [Connecting Dataset to Your Facebook Ads Account](#2-connecting-dataset-to-your-facebook-ads-account)
 3. [Creating Effective Ad Campaigns](#3-creating-effective-ad-campaigns)
 4. [Targeting the Right Audience](#4-targeting-the-right-audience)
 5. [Optimizing Ad Content](#5-optimizing-ad-content)
@@ -17,23 +17,51 @@ This detailed guide will walk you through setting up, optimizing, and maintainin
 11. [Troubleshooting](#11-troubleshooting)
 12. [Compliance and Privacy](#12-compliance-and-privacy)
 
-## 1. Setting Up Your Meta Pixel
+## 1. Setting Up Your Meta Dataset
 
 ### Login to Facebook Business Manager
 
 1. Go to [business.facebook.com](https://business.facebook.com/) and log in with your Facebook account
 2. If you don't have a Business Manager account, you'll need to create one
 
-### Create or Access Your Meta Pixel
+### Create a Dataset (Replacing the Previous Pixel Setup)
 
-1. Navigate to **Business Settings** > **Data Sources** > **Pixels**
-2. Click **Add** to create a new Pixel if you don't have one
-3. Name your Pixel (e.g., "Google Cloud Free Trial Pixel")
-4. Enter your website URL: `https://googlecloudfreetrial.vercel.app/`
+1. Navigate to **Events Manager** in your Business Manager
+2. Click on the **Connect Data Sources** button (or the green "+" button)
+3. Select **Web** as your data source
+4. Choose **Connect with a partner platform** or **Manually add events code**
+5. Name your Dataset (e.g., "Google Cloud Free Trial Dataset") 
+6. Enter your website URL: `https://googlecloudfreetrial.vercel.app/`
+7. Complete the setup wizard to get your new Dataset ID
 
-### Verify Your Pixel Installation
+### Implement the Meta Base Code
 
-1. In Events Manager, select your Pixel
+Update your website code with the new Meta tag. The implementation is similar to the previous Pixel, but uses your new Dataset ID:
+
+```html
+<!-- Meta Dataset Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'YOUR_DATASET_ID'); // Replace with your Dataset ID
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=YOUR_DATASET_ID&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Dataset Code -->
+```
+
+### Verify Your Dataset Implementation
+
+1. In Events Manager, select your Dataset
 2. Click **Test Events** in the sidebar
 3. Enter your website URL and click "Open Website"
 4. The Test Events tool will open your website in a new tab
@@ -43,7 +71,18 @@ This detailed guide will walk you through setting up, optimizing, and maintainin
    - `InitiateCheckout` (when the checkout modal opens)
    - `Purchase` (when a purchase is completed)
 
-### Setting Up Important Custom Conversions
+### Configure Your Web Events
+
+1. Go to **Events Manager** > **Data Sources** > select your Dataset
+2. Navigate to **Settings** > **Event Setup**
+3. Click on **Configure Web Events**
+4. Add and prioritize the following events:
+   - `PageView` (highest priority)
+   - `Purchase`
+   - `InitiateCheckout`
+   - `Lead`
+
+### Setting Up Custom Conversions
 
 1. Go to **Events Manager** > **Custom Conversions**
 2. Click **Create Custom Conversion**
@@ -51,15 +90,14 @@ This detailed guide will walk you through setting up, optimizing, and maintainin
    - **Clicked Get Started**: Rule = Event "Lead" where content_name = "Get Started Now"
    - **Completed Purchase**: Rule = Event "Purchase"
 
-## 2. Connecting Pixel to Your Facebook Ads Account
+## 2. Connecting Dataset to Your Facebook Ads Account
 
-### Link Pixel to Ad Account
+### Link Dataset to Ad Account
 
-1. Go to **Business Settings** > **Data Sources** > **Pixels**
-2. Select your Pixel
-3. Under **Connected Assets** tab, click **Add Assets**
-4. Select **Ad Accounts** and choose your ad account
-5. Set permission level to "Full Access"
+1. Go to **Business Settings** > **Data Sources** > your Dataset
+2. Under **Connected Assets** tab, click **Add Assets**
+3. Select **Ad Accounts** and choose your ad account
+4. Set permission level to "Full Access"
 
 ### Set Up Domain Verification
 
