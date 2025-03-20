@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import CheckoutModal from "./CheckoutModal";
+import { trackButtonClick } from '../lib/metaPixelService';
 
 const Pricing = () => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
@@ -77,7 +78,15 @@ const Pricing = () => {
                 
                 <Button 
                   className="bg-cloud-blue hover:bg-cloud-darkBlue text-white w-full py-7 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all mt-auto"
-                  onClick={() => setIsCheckoutOpen(true)}
+                  onClick={() => {
+                    // Track the button click with Meta Pixel
+                    trackButtonClick('Lead', 'Get Started Now', {
+                      value: 99.99,
+                      currency: 'USD'
+                    });
+                    // Open the checkout modal
+                    setIsCheckoutOpen(true);
+                  }}
                 >
                   Get Started Now
                 </Button>

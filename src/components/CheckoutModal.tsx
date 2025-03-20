@@ -7,6 +7,7 @@ import { useOrder } from '@/lib/OrderContext';
 import CustomerInfoForm, { CustomerInfo } from './CustomerInfoForm';
 import { sendOrderNotifications, mockSendOrderNotifications } from '@/lib/awsSesService';
 import { toast } from "sonner";
+import { trackInitiateCheckout, trackPurchase } from '@/lib/metaPixelService';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -34,6 +35,14 @@ const CheckoutModal = ({ isOpen, onClose, productName, amount, currency }: Check
   const [notificationStatus, setNotificationStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const { addOrder, updateOrderStatus } = useOrder();
 
+  // Track checkout initiation when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      const numericAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
+      trackInitiateCheckout(numericAmount, currency);
+    }
+  }, [isOpen, amount, currency]);
+
   // Create a pending order when modal opens
   useEffect(() => {
     if (isOpen && !orderId) {
@@ -56,22 +65,24 @@ const CheckoutModal = ({ isOpen, onClose, productName, amount, currency }: Check
   };
 
   const handlePaymentSuccess = async (details: any) => {
-    console.log('Payment successful!', details);
-    setPaymentStatus('success');
+    setPaymentStatus('processing');
     
-    // Generate a proper order ID for production
-    const generatedOrderId = generateOrderId();
-    
-    // Update order status in the context
-    if (orderId) {
-      updateOrderStatus(orderId, 'completed', details.id);
-    }
-    
-    // Send email notifications if customer info is available
-    if (customerInfo) {
-      setNotificationStatus('sending');
+    try {
+      console.log('Payment successful!', details);
+      setPaymentStatus('success');
       
-      try {
+      // Generate a proper order ID for production
+      const generatedOrderId = generateOrderId();
+      
+      // Update order status in the context
+      if (orderId) {
+        updateOrderStatus(orderId, 'completed', details.id);
+      }
+      
+      // Send email notifications if customer info is available
+      if (customerInfo) {
+        setNotificationStatus('sending');
+        
         const { adminEmailSent, customerEmailSent } = await sendOrderNotifications({
           orderId: generatedOrderId,
           productName,
@@ -92,11 +103,15 @@ const CheckoutModal = ({ isOpen, onClose, productName, amount, currency }: Check
         } else {
           toast.info("Partial delivery of confirmation emails. We'll follow up if needed.");
         }
-      } catch (error) {
-        console.error("Failed to send notifications:", error);
-        setNotificationStatus('error');
-        toast.error("Failed to send confirmation emails. We'll contact you soon.");
       }
+      
+      // Track successful purchase with Meta Pixel
+      const numericAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
+      trackPurchase(numericAmount, currency, productName);
+    } catch (error) {
+      console.error("Failed to send notifications:", error);
+      setNotificationStatus('error');
+      toast.error("Failed to send confirmation emails. We'll contact you soon.");
     }
   };
 
