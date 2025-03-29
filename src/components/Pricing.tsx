@@ -52,7 +52,7 @@ const Pricing = () => {
               {/* Right side with price and features */}
               <div className="p-10 lg:col-span-3 flex flex-col">
                 <div className="flex items-end mb-8">
-                  <span className="text-5xl font-bold text-gray-900">$99.99</span>
+                  <span className="text-5xl font-bold text-gray-900">$49.99</span>
                   <span className="text-cloud-gray ml-2 pb-2"> / account</span>
                 </div>
                 
@@ -81,7 +81,7 @@ const Pricing = () => {
                   onClick={() => {
                     // Track the button click with Meta Pixel
                     trackButtonClick('Lead', 'Get Started Now', {
-                      value: 99.99,
+                      value: 49.99,
                       currency: 'USD'
                     });
                     // Open the checkout modal
@@ -123,7 +123,7 @@ const Pricing = () => {
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
         productName="Google Cloud Free Trial Account"
-        amount="99.99"
+        amount="49.99"
         currency="USD"
       />
     </section>
