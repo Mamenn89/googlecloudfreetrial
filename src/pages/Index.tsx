@@ -4,7 +4,6 @@ import Features from "@/components/Features";
 import Pricing from "@/components/Pricing";
 import FAQ, { CloudFeatures } from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const Index = () => {
   return (
@@ -16,7 +15,6 @@ const Index = () => {
         <Pricing />
         <FAQ />
         <CloudFeatures />
-        <WhatsAppWidget />
       </main>
       <Footer />
     </div>
