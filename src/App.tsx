@@ -8,6 +8,7 @@ import { OrderProvider } from "@/lib/OrderContext";
 import Index from "@/pages/Index";
 import BlogPostPage from "@/pages/BlogPostPage";
 import NotFound from "@/pages/NotFound";
+import BlankPage from "@/pages/BlankPage";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/blog/google-cloud-free-trial",
     element: <BlogPostPage />,
+  },
+  {
+    path: "/blank",
+    element: <BlankPage />,
   },
   {
     path: "*",
